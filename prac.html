@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <!--first app-->
+    <div ng-app="firstApp" ng-controller="firstController">
+        <h1>
+            {{message}}
+        </h1>
+    </div>
+    <hr>
+    <!--second app-->
+    <div ng-app="secondApp" ng-controller="secondController">
+        <h1>
+            {{message}}
+        </h1>
+    </div>
+
+    <Script>
+        //controller of first app
+        app1=angular.model("firstApp",[]);
+        app1=controller("firstController",function($scope){
+            console.log("first app controller called....");
+            $scope.message="this is controller of the firstApp";
+        });
+        //controller of second app
+        app2=angular.module("secondApp",[]);
+        app2.controller("secondController",function($scope){
+            console.log("second app controller called....");
+            $scope.message="this is controller of the secondApp";
+        });
+
+        //manual bootstrapping both the apps
+        angular.element(document).ready(function(){
+            angular.bootstrap(document.getElementById("app1"),["firstApp"]);
+            angular.bootstrap(document.getElementById("app2"),[secondApp]);
+        });
+        
+    </Script>
+</body>
+</html>
